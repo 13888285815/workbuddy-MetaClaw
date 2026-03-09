@@ -169,10 +169,15 @@ export AZURE_OPENAI_ENDPOINT="https://your-endpoint.openai.azure.com/"
 
 ## 🙏 Acknowledgements
 
-MetaClaw builds on [OpenClaw](https://openclaw.ai) and [Tinker](https://www.thinkingmachines.ai/tinker/). The RL design is inspired by [OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL). The skill bank draws from [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills).
+MetaClaw builds on top of the following open-source projects:
+
+- [OpenClaw](https://openclaw.ai) – the core agent framework.
+- [Tinker](https://www.thinkingmachines.ai/tinker/) – used for online RL training.
+- [OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL) – inspiration for our RL design.
+- [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) – provides the foundation for our skill bank.
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).

@@ -53,7 +53,7 @@ metaclaw start --mode rl    # Optional: + Live-RL-Training via Tinker
 
 ## 🎥 Demo
 
-https://github.com/user-attachments/assets/1c2919fc-5612-40f7-bb97-c74ab50619d5
+https://github.com/user-attachments/assets/d86a41a8-4181-4e3a-af0e-dc453a6b8594
 
 ---
 

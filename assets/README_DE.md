@@ -46,7 +46,7 @@ metaclaw start --mode rl    # Optional: + Live-RL-Training via Tinker
 
 ## 🔥 Neuigkeiten
 
-- **[03.10.2026]** **v0.2** — Ein-Klick-Deployment über `metaclaw` CLI. Skills standardmäßig aktiviert, RL jetzt optional.
+- **[03.11.2026]** **v0.2** — Ein-Klick-Deployment über `metaclaw` CLI. Skills standardmäßig aktiviert, RL jetzt optional.
 - **[03.09.2026]** **MetaClaw** veröffentlicht — Sprich einfach mit deinem Agenten und lass ihn automatisch weiterentwickeln. **Kein** GPU-Deployment erforderlich; einfach an die **API** anschließen.
 
 ---

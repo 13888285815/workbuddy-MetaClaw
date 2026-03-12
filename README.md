@@ -51,7 +51,7 @@ metaclaw start --mode rl    # optional: + live RL training via Tinker
 
 ## 🎥 Demo
 
-https://github.com/aiming-lab/MetaClaw/blob/main/assets/video_v2.mp4
+https://github.com/user-attachments/assets/d86a41a8-4181-4e3a-af0e-dc453a6b8594
 
 ---
 

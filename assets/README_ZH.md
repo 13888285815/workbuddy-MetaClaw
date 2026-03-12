@@ -53,7 +53,7 @@ metaclaw start --mode rl    # 可选：+ Tinker 云端实时 RL 训练
 
 ## 🎥 演示
 
-https://github.com/user-attachments/assets/1c2919fc-5612-40f7-bb97-c74ab50619d5
+https://github.com/user-attachments/assets/d86a41a8-4181-4e3a-af0e-dc453a6b8594
 
 ---
 

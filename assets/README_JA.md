@@ -115,7 +115,7 @@ pip install -e ".[evolve]"  # + OpenAI 互換 LLM によるスキル進化
 metaclaw setup
 ```
 
-対話型ウィザードで LLM プロバイダー（Kimi、Qwen、またはカスタム）、API キー、RL の有効化を設定します。
+対話型ウィザードで LLM プロバイダー（Kimi、Qwen、MiniMax、またはカスタム）、API キー、RL の有効化を設定します。
 
 ### 3. 起動
 
@@ -158,7 +158,7 @@ metaclaw config proxy.port 31000          # プロキシポートを変更
 mode: skills_only          # "skills_only" | "rl"
 
 llm:
-  provider: kimi            # kimi | qwen | openai | custom
+  provider: kimi            # kimi | qwen | openai | minimax | custom
   model_id: moonshotai/Kimi-K2.5
   api_base: https://api.moonshot.cn/v1
   api_key: sk-...

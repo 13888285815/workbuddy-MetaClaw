@@ -115,7 +115,7 @@ pip install -e ".[evolve]"  # + 通过 OpenAI 兼容 LLM 进行 Skill 进化
 metaclaw setup
 ```
 
-交互式向导会引导你选择 LLM 提供商（Kimi、Qwen 或自定义），填写 API Key，并可选开启 RL 训练。
+交互式向导会引导你选择 LLM 提供商（Kimi、Qwen、MiniMax 或自定义），填写 API Key，并可选开启 RL 训练。
 
 ### 3. 启动
 
@@ -158,7 +158,7 @@ metaclaw config proxy.port 31000          # 修改代理端口
 mode: skills_only          # "skills_only" | "rl"
 
 llm:
-  provider: kimi            # kimi | qwen | openai | custom
+  provider: kimi            # kimi | qwen | openai | minimax | custom
   model_id: moonshotai/Kimi-K2.5
   api_base: https://api.moonshot.cn/v1
   api_key: sk-...

@@ -21,6 +21,10 @@ _PROVIDER_PRESETS = {
         "api_base": "https://api.openai.com/v1",
         "model_id": "gpt-4o",
     },
+    "minimax": {
+        "api_base": "https://api.minimax.io/v1",
+        "model_id": "MiniMax-M2.5",
+    },
     "custom": {
         "api_base": "",
         "model_id": "",
@@ -101,7 +105,7 @@ class SetupWizard:
         current_provider = current_llm.get("provider", "custom")
         provider = _prompt_choice(
             "LLM provider",
-            ["kimi", "qwen", "openai", "custom"],
+            ["kimi", "qwen", "openai", "minimax", "custom"],
             default=current_provider,
         )
         preset = _PROVIDER_PRESETS[provider]

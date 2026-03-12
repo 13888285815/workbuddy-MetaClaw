@@ -115,7 +115,7 @@ pip install -e ".[evolve]"  # + évolution des skills via LLM compatible OpenAI
 metaclaw setup
 ```
 
-L'assistant interactif vous demande de choisir votre fournisseur LLM (Kimi, Qwen, ou personnalisé), votre clé API, et d'activer optionnellement l'entraînement RL.
+L'assistant interactif vous demande de choisir votre fournisseur LLM (Kimi, Qwen, MiniMax, ou personnalisé), votre clé API, et d'activer optionnellement l'entraînement RL.
 
 ### 3. Démarrage
 
@@ -158,7 +158,7 @@ La configuration se trouve dans `~/.metaclaw/config.yaml`, créée par `metaclaw
 mode: skills_only          # "skills_only" | "rl"
 
 llm:
-  provider: kimi            # kimi | qwen | openai | custom
+  provider: kimi            # kimi | qwen | openai | minimax | custom
   model_id: moonshotai/Kimi-K2.5
   api_base: https://api.moonshot.cn/v1
   api_key: sk-...

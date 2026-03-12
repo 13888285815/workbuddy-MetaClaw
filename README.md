@@ -60,7 +60,7 @@ https://github.com/user-attachments/assets/1c2919fc-5612-40f7-bb97-c74ab50619d5
 **MetaClaw turns live conversations into continuous training data — automatically.**
 Just talk to your agent as usual, and MetaClaw handles the learning loop behind the scenes.
 
-It wraps your model behind an OpenAI-compatible proxy, intercepts interactions from OpenClaw, injects relevant skills at every turn, and optionally fine-tunes the model continuously via Tinker cloud RL. Updated weights are hot-swapped with no service interruption.
+It places your model behind an OpenAI-compatible proxy that intercepts interactions from OpenClaw, injects relevant skills at each step, and can optionally perform continuous fine-tuning through Tinker Cloud RL. Updated weights are hot-swapped seamlessly without interrupting the service.
 
 There is no need to maintain a dedicated GPU cluster. MetaClaw works with any OpenAI-compatible LLM API out of the box, and optionally integrates **Kimi-K2.5** (1T MoE) via [Tinker](https://www.thinkingmachines.ai/tinker/) for cloud-based LoRA training.
 

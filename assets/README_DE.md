@@ -8,6 +8,44 @@
 
 <p>Inspiriert davon, wie das Gehirn lernt. Meta-lernen und entwickeln Sie Ihren 🦞 aus jedem Gespräch. Keine GPU nötig. Kompatibel mit Kimi, Qwen, Claude, MiniMax und mehr.</p>
 
+<table>
+<tr>
+<td align="center" width="100">
+  <a href="https://kimi.ai">
+    <img src="https://github.com/MoonshotAI.png?size=200" width="48" height="48" alt="Kimi" />
+  </a><br/>
+  <sub><a href="https://kimi.ai"><b>Kimi</b></a></sub>
+</td>
+<td align="center" width="100">
+  <a href="https://qwen.ai">
+    <img src="https://github.com/QwenLM.png?size=200" width="48" height="48" alt="Qwen" />
+  </a><br/>
+  <sub><a href="https://qwen.ai"><b>Qwen</b></a></sub>
+</td>
+<td align="center" width="100">
+  <a href="https://www.anthropic.com/claude">
+    <img src="https://cdn.simpleicons.org/claude/D97757" width="48" height="48" alt="Claude" />
+  </a><br/>
+  <sub><a href="https://www.anthropic.com/claude"><b>Claude</b></a></sub>
+</td>
+<td align="center" width="100">
+  <a href="https://www.minimax.io">
+    <img src="https://github.com/minimax-ai.png?size=200" width="48" height="48" alt="MiniMax" />
+  </a><br/>
+  <sub><a href="https://www.minimax.io"><b>MiniMax</b></a></sub>
+</td>
+<td align="center" width="100">
+  <a href="https://openai.com">
+    <img src="https://github.com/openai.png?size=200" width="48" height="48" alt="OpenAI" />
+  </a><br/>
+  <sub><a href="https://openai.com"><b>OpenAI</b></a></sub>
+</td>
+<td align="center" width="100">
+  <sub><b>+ Jede OpenAI-<br/>kompatible API</b></sub>
+</td>
+</tr>
+</table>
+
 <p>
   <a href="https://github.com/aiming-lab/MetaClaw"><img src="https://img.shields.io/badge/github-MetaClaw-181717?style=flat&labelColor=555&logo=github&logoColor=white" alt="GitHub"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat&labelColor=555" alt="License MIT"></a>

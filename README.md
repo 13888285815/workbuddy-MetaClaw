@@ -46,25 +46,25 @@ metaclaw start --mode skills_only  # skills only, no RL (no Tinker needed)
 ## 🔥 News
 
 - **[03/13/2026]** **v0.3** — Meta-learning scheduler: slow RL updates now only run during sleep hours, idle time, or Google Calendar meetings. Added MAML-inspired support/query set separation to prevent stale reward signals from polluting model updates.
-- **[03/10/2026]** **v0.2** — One-click deployment via `metaclaw` CLI. Skills enabled by default, RL is now opt-in.
+- **[03/11/2026]** **v0.2** — One-click deployment via `metaclaw` CLI. Skills enabled by default, RL is now opt-in.
 - **[03/09/2026]** We release **MetaClaw** — Just talk to your agent and let it evolve automatically. **NO** GPU deployment required; just plug into the **API**.
 
 ---
 
 ## 🎥 Demo
 
-https://github.com/user-attachments/assets/1c2919fc-5612-40f7-bb97-c74ab50619d5
+https://github.com/user-attachments/assets/d86a41a8-4181-4e3a-af0e-dc453a6b8594
 
 ---
 
 ## 📖 Overview
 
-**MetaClaw turns live conversations into continuous training data — automatically.**
-Just talk to your agent as usual, and MetaClaw handles the learning loop behind the scenes.
+**MetaClaw is an agent that meta-learns and evolves in the wild.**
+Just talk to your agent as you normally would — MetaClaw turns every live conversation into a learning signal, enabling the agent to continuously improve through real-world deployment rather than offline training alone.
 
-It wraps your model behind an OpenAI-compatible proxy, intercepts interactions from OpenClaw, injects relevant skills at every turn, and optionally fine-tunes the model continuously via Tinker cloud RL. Updated weights are hot-swapped with no service interruption.
+Under the hood, it places your model behind an OpenAI-compatible proxy that intercepts interactions from OpenClaw, injects relevant skills at each turn, and meta-learns from accumulated experience. Skills are summarized automatically after each session; with RL enabled, a meta-learning scheduler defers weight updates to idle windows so the agent is never interrupted during active use.
 
-There is no need to maintain a dedicated GPU cluster. MetaClaw works with any OpenAI-compatible LLM API out of the box, and optionally integrates **Kimi-K2.5** (~200B MoE) via [Tinker](https://www.thinkingmachines.ai/tinker/) for cloud-based LoRA training.
+No GPU cluster required. MetaClaw works with any OpenAI-compatible LLM API out of the box, and optionally integrates **Kimi-K2.5** (1T MoE) via [Tinker](https://www.thinkingmachines.ai/tinker/) for cloud-based LoRA training.
 
 ## 🤖 Key Features
 
@@ -77,24 +77,7 @@ Configure once with `metaclaw setup`, then `metaclaw start` brings up the proxy,
 |------|---------|--------------|
 | `auto` | ✅ | RL + smart scheduler. Skills always on; RL weight updates only run during sleep/idle/meeting windows. |
 | `rl` | — | RL without scheduler. Trains immediately when a batch is full (original v0.2 behavior). |
-| `skills_only` | — | Proxy → your LLM API. Skills injected, auto-summarized. No GPU/Tinker required. |
-
-### **Meta-learning update scheduler** *(auto mode)*
-
-In `auto` mode, slow RL weight updates are gated by a scheduler inspired by the MAML meta-learning framework:
-
-- **Inner loop (fast)** — skill files are updated immediately after each session, always on
-- **Outer loop (slow)** — RL gradient updates only run during user-inactive windows
-
-Three conditions trigger an update window (any one is sufficient):
-
-| Trigger | How it works |
-|---------|-------------|
-| Sleep hours | Configurable start/end time (e.g. `23:00–07:00`) |
-| System idle | User has been away from keyboard for N minutes (macOS: `ioreg`; Linux: `xprintidle`) |
-| Google Calendar | Current time falls inside a calendar event — user is in a meeting |
-
-The agent continues serving requests throughout; only the expensive `save_weights` step is deferred to idle windows.
+| `skills_only` | — | Proxy → your LLM API. Skills injected, auto-summarized after each session. No GPU/Tinker required. |
 
 ### **Skill injection**
 At every turn, MetaClaw retrieves the most relevant skill instructions and injects them into the agent's system prompt. Immediate behavior improvement without retraining.
@@ -135,7 +118,7 @@ pip install -e ".[rl,evolve,scheduler]" # recommended for full RL + scheduler se
 metaclaw setup
 ```
 
-The interactive wizard will ask you to choose your LLM provider (Kimi, Qwen, or custom), enter your API key, and optionally enable RL training.
+The interactive wizard will ask you to choose your LLM provider (Kimi, Qwen, MiniMax, or custom), enter your API key, and optionally enable RL training.
 
 ### 3. Start
 
@@ -158,11 +141,6 @@ metaclaw stop                   # Stop a running MetaClaw instance
 metaclaw status                 # Check proxy health, running mode, and scheduler state
 metaclaw config show            # View current configuration
 metaclaw config KEY VALUE       # Set a config value
-metaclaw scheduler status       # Show current slow-update scheduler state
-metaclaw scheduler next-window  # Show when the next RL update window will open
-metaclaw skills log             # Show skill evolution history (last 10 events)
-metaclaw skills log --n 30      # Show last 30 events
-metaclaw skills log --full      # Include full skill content and failure excerpts
 ```
 
 **Common config keys:**
@@ -184,7 +162,7 @@ Configuration lives in `~/.metaclaw/config.yaml`, created by `metaclaw setup`.
 mode: auto                 # "auto" | "rl" | "skills_only"
 
 llm:
-  provider: kimi            # kimi | qwen | openai | custom
+  provider: kimi            # kimi | qwen | openai | minimax | custom
   model_id: moonshotai/Kimi-K2.5
   api_base: https://api.moonshot.cn/v1
   api_key: sk-...
@@ -316,7 +294,7 @@ Each `ConversationSample` is tagged with a `skill_generation` version. When skil
 
 ---
 
-
+## 📚 Citation
 
 ```bibtex
 @misc{xia2026metaclaw,

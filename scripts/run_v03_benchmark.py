@@ -41,6 +41,9 @@ async def run_training():
     logger.info("Sleep window: %s – %s (current time: %s)", sleep_start, sleep_end, now.strftime("%H:%M"))
 
     config = MetaClawConfig(
+        # Mode
+        mode="auto",
+
         # Model
         model_name="Qwen/Qwen3-8B",
         served_model_name="Qwen3-8B",
@@ -286,7 +289,7 @@ async def run_evaluation(config):
 async def main():
     logger.info("=" * 60)
     logger.info("  MetaClaw v0.3 Benchmark")
-    logger.info("  batch_size=2  max_steps=5  scheduler=on")
+    logger.info("  batch_size=2  max_steps=5  mode=auto")
     logger.info("  PRM: Bedrock Sonnet 4.6  Evolver: Bedrock Sonnet 4.6")
     logger.info("=" * 60)
 

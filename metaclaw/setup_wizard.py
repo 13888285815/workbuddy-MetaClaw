@@ -88,10 +88,10 @@ class SetupWizard:
         existing = cs.load() if cs.exists() else {}
 
         # ---- Operating mode ----
-        current_mode = existing.get("mode", "skills_only")
+        current_mode = existing.get("mode", "auto")
         mode = _prompt_choice(
             "Operating mode",
-            ["skills_only", "rl"],
+            ["auto", "skills_only", "rl"],
             default=current_mode,
         )
 
@@ -140,9 +140,9 @@ class SetupWizard:
         current_proxy = existing.get("proxy", {})
         proxy_port = _prompt_int("Proxy port", default=current_proxy.get("port", 30000))
 
-        # ---- RL config (only if mode == "rl") ----
+        # ---- RL config (only if mode uses RL) ----
         rl_config: dict = existing.get("rl", {})
-        rl_enabled = mode == "rl"
+        rl_enabled = mode in ("rl", "auto")
 
         if rl_enabled:
             print("\n--- RL Training Configuration ---")

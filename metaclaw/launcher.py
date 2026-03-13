@@ -49,7 +49,11 @@ class MetaClawLauncher:
         self._write_pid()
         self._setup_signal_handlers()
 
-        if mode == "skills_only":
+        # "auto" mode = RL with scheduler enabled
+        if mode == "auto":
+            cfg.scheduler_enabled = True
+            await self._start_rl(cfg)
+        elif mode == "skills_only":
             await self._start_skills_only(cfg)
         else:
             await self._start_rl(cfg)

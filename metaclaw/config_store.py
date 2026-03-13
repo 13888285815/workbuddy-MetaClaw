@@ -15,7 +15,7 @@ CONFIG_DIR = Path.home() / ".metaclaw"
 CONFIG_FILE = CONFIG_DIR / "config.yaml"
 
 _DEFAULTS: dict = {
-    "mode": "skills_only",
+    "mode": "auto",
     "llm": {
         "provider": "custom",
         "model_id": "",
@@ -144,8 +144,8 @@ class ConfigStore:
         rl = data.get("rl", {})
         sched = data.get("scheduler", {})
         sched_cal = sched.get("calendar", {})
-        mode = data.get("mode", "skills_only")
-        rl_enabled = bool(rl.get("enabled", False))
+        mode = data.get("mode", "auto")
+        rl_enabled = mode in ("rl", "auto") or bool(rl.get("enabled", False))
 
         # Evolver: prefer rl.evolver_*, fallback to llm.*
         evolver_api_base = rl.get("evolver_api_base") or llm.get("api_base", "")
@@ -189,8 +189,8 @@ class ConfigStore:
             evolver_api_base=evolver_api_base,
             evolver_api_key=evolver_api_key,
             evolver_model_id=evolver_model,
-            # Scheduler
-            scheduler_enabled=bool(sched.get("enabled", False)),
+            # Scheduler — auto mode forces scheduler on
+            scheduler_enabled=mode == "auto" or bool(sched.get("enabled", False)),
             scheduler_idle_threshold_minutes=int(sched.get("idle_threshold_minutes", 30)),
             scheduler_sleep_start=str(sched.get("sleep_start", "23:00")),
             scheduler_sleep_end=str(sched.get("sleep_end", "07:00")),
@@ -209,7 +209,7 @@ class ConfigStore:
         llm = data.get("llm", {})
         skills = data.get("skills", {})
         rl = data.get("rl", {})
-        mode = data.get("mode", "skills_only")
+        mode = data.get("mode", "auto")
         lines = [
             f"mode:            {mode}",
             f"llm.provider:    {llm.get('provider', '?')}",

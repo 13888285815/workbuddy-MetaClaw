@@ -93,6 +93,7 @@ metaclaw start --mode skills_only  # 仅 Skills，无 RL（无需 Tinker）
 
 ## 🔥 最新动态
 
+- **[2026/03/13]** **v0.3.1** —— MinT 后端支持：RL 训练现同时支持 Tinker 和 MinT。通过 `rl.backend`（auto/tinker/mint）配置。
 - **[2026/03/13]** **v0.3** —— 持续元学习支持：慢速 RL 更新仅在睡眠时间、空闲期间或 Google Calendar 会议期间运行。新增 support/query 集分离，防止过时的奖励信号污染模型更新。
 - **[2026/03/11]** **v0.2** —— 通过 `metaclaw` CLI 一键部署。Skill 默认开启，RL 现为可选。
 - **[2026/03/09]** 正式发布 **MetaClaw** —— 只需与 Agent 对话，即可让其自动进化。**无需** GPU 部署，直接接入 **API** 即可。

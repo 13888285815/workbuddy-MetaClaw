@@ -1,4 +1,3 @@
-from openai import OpenAI
 from typing import Any
 import os
 import subprocess
@@ -62,6 +61,13 @@ def _run_llm_bedrock(messages):
 
 
 def _run_llm_openai(messages):
+    try:
+        from openai import OpenAI  # optional dep — install with: pip install metaclaw[evolve]
+    except ImportError as e:
+        raise ImportError(
+            "The openai provider requires the 'openai' package. "
+            "Install it with: pip install metaclaw[evolve]"
+        ) from e
     prm_url = ""
     prm_api_key = ""
     prm_model = ""

@@ -31,10 +31,7 @@ from typing import Any, Optional
 import uvicorn
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
-from openai import OpenAI
-
 from .config import MetaClawConfig
-from .data_formatter import ConversationSample
 from .prm_scorer import PRMScorer
 from .sdk_backend import resolve_sdk_backend
 from .skill_manager import SkillManager
@@ -369,8 +366,15 @@ class MetaClawAPIServer:
         self._session_turns: dict[str, list] = {}
 
         # OPD teacher model client
-        self._teacher_client: Optional[OpenAI] = None
+        self._teacher_client: Optional[Any] = None
         if config.use_opd and config.teacher_url:
+            try:
+                from openai import OpenAI  # optional dep — install with: pip install metaclaw[evolve]
+            except ImportError as e:
+                raise ImportError(
+                    "OPD teacher mode requires the 'openai' package. "
+                    "Install it with: pip install metaclaw[evolve]"
+                ) from e
             self._teacher_client = OpenAI(
                 base_url=config.teacher_url,
                 api_key=config.teacher_api_key or "unused",
@@ -1251,6 +1255,7 @@ class MetaClawAPIServer:
             )
 
         loss_mask = [0] * len(response_ids) if exclude else [1] * len(response_ids)
+        from .data_formatter import ConversationSample  # optional dep (RL path only)
         sample = ConversationSample(
             session_id=session_id,
             turn_num=self._turn_counts.get(session_id, 0),

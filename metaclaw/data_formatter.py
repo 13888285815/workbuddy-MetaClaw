@@ -21,8 +21,6 @@ import math
 from dataclasses import dataclass, field
 from typing import Optional
 
-import torch
-
 logger = logging.getLogger(__name__)
 
 
@@ -171,6 +169,14 @@ def sample_to_datum(
     # clip_*_threshold are accepted).  The mask information is already encoded
     # in the advantages (0.0 for prompt / masked positions).  The cookbook
     # likewise strips mask via remove_mask() before calling forward_backward.
+    try:
+        import torch  # optional dep — install with: pip install metaclaw[rl]
+    except ImportError as e:
+        raise ImportError(
+            "RL data formatting requires torch. "
+            "Install it with: pip install metaclaw[rl]"
+        ) from e
+
     return sdk.Datum(
         model_input=model_input,
         loss_fn_inputs={

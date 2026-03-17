@@ -10,6 +10,8 @@
   
   Works with Kimi, Qwen, Claude, MiniMax, and more. Supports OpenClaw, CoPaw, IronClaw, PicoClaw, ZeroClaw, NanoClaw, and NemoClaw.</p>
 
+<br/>
+
 <img src="assets/metaclaw_mainfig.png" alt="MetaClaw Architecture" width="800">
 
 <p>

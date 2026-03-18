@@ -39,6 +39,8 @@
 ```bash
 metaclaw setup              # configurazione guidata iniziale
 metaclaw start              # predefinito: modalita madmax, Skill + addestramento RL programmato
+metaclaw start --daemon     # esegui in background, log -> ~/.metaclaw/metaclaw.log
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # percorso log personalizzato
 metaclaw start --mode rl    # RL senza scheduler (addestra immediatamente a batch completo)
 metaclaw start --mode skills_only  # solo Skill, nessun RL (Tinker non necessario)
 ```
@@ -154,6 +156,8 @@ La configurazione si trova in `~/.metaclaw/config.yaml`, creata da `metaclaw set
 ```
 metaclaw setup                  # Procedura guidata di configurazione iniziale
 metaclaw start                  # Avvia MetaClaw (predefinito: modalita madmax)
+metaclaw start --daemon         # Avvia MetaClaw in background
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # Percorso log personalizzato
 metaclaw start --mode rl        # Forza la modalita RL (senza scheduler) per questa sessione
 metaclaw start --mode skills_only  # Forza la modalita solo Skill per questa sessione
 metaclaw stop                   # Ferma un'istanza MetaClaw in esecuzione
@@ -161,6 +165,8 @@ metaclaw status                 # Controlla lo stato del proxy, la modalita e lo
 metaclaw config show            # Visualizza la configurazione corrente
 metaclaw config KEY VALUE       # Imposta un valore di configurazione
 ```
+
+Quando avvii MetaClaw con `--daemon`, il comando attende che il proxy locale sia operativo prima di restituire il controllo. Usa `metaclaw status` per verificare lo stato e `metaclaw stop` per arrestare il processo in background.
 
 <details>
 <summary><b>Riferimento completo della configurazione (clicca per espandere)</b></summary>

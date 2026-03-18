@@ -39,6 +39,8 @@
 ```bash
 metaclaw setup              # पहली बार का कॉन्फ़िगरेशन विज़ार्ड
 metaclaw start              # डिफ़ॉल्ट madmax मोड: Skills + शेड्यूल्ड RL ट्रेनिंग
+metaclaw start --daemon     # बैकग्राउंड में चलाएं, लॉग -> ~/.metaclaw/metaclaw.log
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # कस्टम लॉग पथ
 metaclaw start --mode rl    # बिना शेड्यूलर के RL (batch भरते ही ट्रेनिंग)
 metaclaw start --mode skills_only  # केवल Skills, कोई RL नहीं (Tinker की ज़रूरत नहीं)
 ```
@@ -154,6 +156,8 @@ metaclaw start
 ```
 metaclaw setup                  # पहली बार का इंटरैक्टिव कॉन्फ़िगरेशन विज़ार्ड
 metaclaw start                  # MetaClaw शुरू करें (डिफ़ॉल्ट: madmax मोड)
+metaclaw start --daemon         # MetaClaw बैकग्राउंड में शुरू करें
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # कस्टम लॉग पथ
 metaclaw start --mode rl        # इस सेशन के लिए RL मोड सक्रिय करें (बिना शेड्यूलर)
 metaclaw start --mode skills_only  # इस सेशन के लिए केवल Skills मोड सक्रिय करें
 metaclaw stop                   # चल रहे MetaClaw इंस्टेंस को रोकें
@@ -161,6 +165,8 @@ metaclaw status                 # प्रॉक्सी स्वास्थ
 metaclaw config show            # वर्तमान कॉन्फ़िगरेशन देखें
 metaclaw config KEY VALUE       # कॉन्फ़िगरेशन मान सेट करें
 ```
+
+जब आप MetaClaw को `--daemon` के साथ शुरू करते हैं, तो कमांड लोकल प्रॉक्सी के तैयार होने तक प्रतीक्षा करता है। तत्परता की जाँच के लिए `metaclaw status` और बैकग्राउंड प्रक्रिया को रोकने के लिए `metaclaw stop` का उपयोग करें।
 
 <details>
 <summary><b>पूर्ण कॉन्फ़िगरेशन संदर्भ (विस्तार के लिए क्लिक करें)</b></summary>

@@ -39,6 +39,8 @@
 ```bash
 metaclaw setup              # معالج الإعداد لمرة واحدة
 metaclaw start              # الوضع الافتراضي: madmax، مهارات + تدريب RL مُجدوَل
+metaclaw start --daemon     # تشغيل في الخلفية، السجلات -> ~/.metaclaw/metaclaw.log
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # مسار سجل مخصص
 metaclaw start --mode rl    # RL بدون مُجدوِل (يتدرّب فورًا عند اكتمال الدُّفعة)
 metaclaw start --mode skills_only  # مهارات فقط، بدون RL (لا حاجة لـ Tinker)
 ```
@@ -154,6 +156,8 @@ metaclaw start
 ```
 metaclaw setup                  # معالج الإعداد التفاعلي لأول مرة
 metaclaw start                  # تشغيل MetaClaw (الوضع الافتراضي: madmax)
+metaclaw start --daemon         # تشغيل MetaClaw في الخلفية
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # مسار سجل مخصص
 metaclaw start --mode rl        # فرض وضع RL لهذه الجلسة (بدون مُجدوِل)
 metaclaw start --mode skills_only  # فرض وضع المهارات فقط لهذه الجلسة
 metaclaw stop                   # إيقاف مثيل MetaClaw قيد التشغيل
@@ -161,6 +165,8 @@ metaclaw status                 # التحقق من صحة الوكيل الوس
 metaclaw config show            # عرض الإعدادات الحالية
 metaclaw config KEY VALUE       # تعيين قيمة إعداد
 ```
+
+عند تشغيل MetaClaw مع `--daemon`، ينتظر الأمر حتى يصبح الوكيل المحلي جاهزًا قبل الإرجاع. استخدم `metaclaw status` للتحقق من الجاهزية و `metaclaw stop` لإيقاف العملية في الخلفية.
 
 <details>
 <summary><b>المرجع الكامل للإعدادات (انقر للتوسيع)</b></summary>

@@ -39,6 +39,8 @@
 ```bash
 metaclaw setup              # trinh huong dan cau hinh lan dau
 metaclaw start              # mac dinh: che do madmax, Skills + huan luyen RL theo lich
+metaclaw start --daemon     # chay ngam, log -> ~/.metaclaw/metaclaw.log
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # duong dan log tuy chinh
 metaclaw start --mode rl    # RL khong co bo lap lich (huan luyen ngay khi du batch)
 metaclaw start --mode skills_only  # chi Skills, khong RL (khong can Tinker)
 ```
@@ -154,6 +156,8 @@ Tep cau hinh nam tai `~/.metaclaw/config.yaml`, duoc tao boi `metaclaw setup`.
 ```
 metaclaw setup                  # Trinh huong dan cau hinh lan dau
 metaclaw start                  # Khoi dong MetaClaw (mac dinh: che do madmax)
+metaclaw start --daemon         # Khoi dong MetaClaw chay ngam
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # Duong dan log tuy chinh
 metaclaw start --mode rl        # Bat che do RL cho phien nay (khong co bo lap lich)
 metaclaw start --mode skills_only  # Bat che do chi Skills cho phien nay
 metaclaw stop                   # Dung phien ban MetaClaw dang chay
@@ -161,6 +165,8 @@ metaclaw status                 # Kiem tra tinh trang proxy, che do chay va tran
 metaclaw config show            # Xem cau hinh hien tai
 metaclaw config KEY VALUE       # Dat gia tri cau hinh
 ```
+
+Khi khoi dong MetaClaw voi `--daemon`, lenh se doi cho den khi proxy cuc bo san sang truoc khi tra ve. Su dung `metaclaw status` de kiem tra trang thai va `metaclaw stop` de dung tien trinh chay ngam.
 
 <details>
 <summary><b>Tham chieu cau hinh day du (nhan de mo rong)</b></summary>

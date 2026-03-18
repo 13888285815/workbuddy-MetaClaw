@@ -39,6 +39,8 @@
 ```bash
 metaclaw setup              # одноразовый мастер настройки
 metaclaw start              # по умолчанию: режим madmax, навыки + плановое RL-обучение
+metaclaw start --daemon     # запуск в фоновом режиме, логи -> ~/.metaclaw/metaclaw.log
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # пользовательский путь к логу
 metaclaw start --mode rl    # RL без планировщика (обучение сразу по заполнении batch)
 metaclaw start --mode skills_only  # только навыки, без RL (Tinker не нужен)
 ```
@@ -154,6 +156,8 @@ metaclaw start
 ```
 metaclaw setup                  # Интерактивный мастер первоначальной настройки
 metaclaw start                  # Запуск MetaClaw (по умолчанию: режим madmax)
+metaclaw start --daemon         # Запуск MetaClaw в фоновом режиме
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # Пользовательский путь к логу
 metaclaw start --mode rl        # Принудительно включить режим RL (без планировщика) для этой сессии
 metaclaw start --mode skills_only  # Принудительно включить режим только навыков для этой сессии
 metaclaw stop                   # Остановить работающий экземпляр MetaClaw
@@ -161,6 +165,8 @@ metaclaw status                 # Проверить состояние прок
 metaclaw config show            # Просмотр текущей конфигурации
 metaclaw config KEY VALUE       # Установить значение конфигурации
 ```
+
+При запуске MetaClaw с `--daemon` команда ожидает, пока локальный прокси станет доступен, прежде чем вернуть управление. Используйте `metaclaw status` для проверки состояния и `metaclaw stop` для остановки фонового процесса.
 
 <details>
 <summary><b>Полная справка по конфигурации (нажмите, чтобы развернуть)</b></summary>

@@ -39,6 +39,8 @@
 ```bash
 metaclaw setup              # Einmaliger Konfigurationsassistent
 metaclaw start              # Standard: MadMax-Modus, Skills + geplantes RL-Training
+metaclaw start --daemon     # im Hintergrund starten, Logs -> ~/.metaclaw/metaclaw.log
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # benutzerdefinierter Log-Pfad
 metaclaw start --mode rl    # RL ohne Scheduler (trainiert sofort bei vollem Batch)
 metaclaw start --mode skills_only  # Nur Skills, kein RL (kein Tinker nötig)
 ```
@@ -154,6 +156,8 @@ Die Konfiguration liegt in `~/.metaclaw/config.yaml`, erstellt durch `metaclaw s
 ```
 metaclaw setup                  # Interaktiver Erstkonfigurations-Assistent
 metaclaw start                  # MetaClaw starten (Standard: MadMax-Modus)
+metaclaw start --daemon         # MetaClaw im Hintergrund starten
+metaclaw start --daemon --log-file /tmp/metaclaw.log  # Benutzerdefinierter Log-Pfad
 metaclaw start --mode rl        # RL-Modus für diese Session erzwingen (ohne Scheduler)
 metaclaw start --mode skills_only  # Nur-Skills-Modus für diese Session erzwingen
 metaclaw stop                   # Laufende MetaClaw-Instanz stoppen
@@ -161,6 +165,8 @@ metaclaw status                 # Proxy-Status, laufenden Modus und Scheduler pr
 metaclaw config show            # Aktuelle Konfiguration anzeigen
 metaclaw config KEY VALUE       # Konfigurationswert setzen
 ```
+
+Wenn Sie MetaClaw mit `--daemon` starten, wartet der Befehl, bis der lokale Proxy bereit ist, bevor er zurückkehrt. Verwenden Sie `metaclaw status` zur Überprüfung und `metaclaw stop` zum Stoppen des Hintergrundprozesses.
 
 <details>
 <summary><b>Vollständige Konfigurationsreferenz (zum Aufklappen klicken)</b></summary>

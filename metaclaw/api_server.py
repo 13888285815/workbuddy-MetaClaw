@@ -987,11 +987,19 @@ class MetaClawAPIServer:
                         raw_system = _flatten_message_content(m.get("content"))
                         break
                 if raw_system:
-                    cached_system = await asyncio.to_thread(
-                        run_llm,
-                        [{"role": "user", "content": raw_system}],
-                    )
-                    cached_system = (cached_system or raw_system).strip()
+                    try:
+                        cached_system = await asyncio.to_thread(
+                            run_llm,
+                            [{"role": "user", "content": raw_system}],
+                            self.config,
+                        )
+                        cached_system = (cached_system or raw_system).strip()
+                    except Exception as e:
+                        logger.warning(
+                            "[OpenClaw] system prompt compression failed: %s — using raw system prompt",
+                            e,
+                        )
+                        cached_system = raw_system.strip()
                     self._write_cached_system_prompt(cached_system)
 
             if cached_system:

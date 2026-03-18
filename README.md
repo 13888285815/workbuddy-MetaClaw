@@ -299,6 +299,8 @@ scheduler:                  # v0.3: meta-learning scheduler (auto-enabled in mad
 
 The lightest mode. No GPU, no RL backend needed. MetaClaw places your LLM behind a proxy that injects relevant skills at every turn, then auto-summarizes new skills after each conversation.
 
+For OpenAI-compatible custom providers, set `llm.api_base` to the full chat API base (usually ending in `/v1`, for example `https://your-gateway.example/v1`). In `skills_only` mode, MetaClaw reuses that same endpoint for prompt compression and related helper LLM calls unless you configure a separate evolver endpoint.
+
 Skills are short Markdown instructions stored in `~/.metaclaw/skills/` as individual `SKILL.md` files. The library grows automatically with your usage.
 
 To pre-load the built-in skill bank (40+ skills across coding, security, agentic tasks, etc.):

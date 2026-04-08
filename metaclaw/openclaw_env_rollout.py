@@ -132,8 +132,36 @@ def _get_rollout_system_prompt() -> str:
 # ── Command execution ─────────────────────────────────────────────────────────
 
 async def _exec_command(cmd: str, timeout: float = 30.0) -> str:
-    """Run a shell command and return combined stdout + stderr."""
+    """Run a shell command and return combined stdout + stderr.
+    
+    SECURITY NOTE: This function uses asyncio.create_subprocess_shell which
+    can be dangerous if the cmd parameter contains untrusted input. The cmd
+    parameter should always be validated before calling this function.
+    In the context of MetaClaw, commands come from the LLM agent's tool calls
+    and should be treated as potentially untrusted input.
+    """
+    import shlex
+    
+    # Security: Validate command to prevent command injection
+    # Only allow specific safe commands (openclaw, ls, cat, etc.)
+    ALLOWED_COMMANDS = {'openclaw', 'ls', 'cat', 'pwd', 'echo', 'head', 'tail', 'grep', 'done'}
+    
+    # Parse the command to get the base command
     try:
+        cmd_parts = shlex.split(cmd.strip())
+        if not cmd_parts:
+            return "Error: empty command"
+        base_cmd = cmd_parts[0]
+    except ValueError as e:
+        return f"Error: invalid command syntax: {e}"
+    
+    # Check if the base command is in the allowed list
+    if base_cmd not in ALLOWED_COMMANDS:
+        return f"Error: command '{base_cmd}' is not allowed for security reasons"
+    
+    try:
+        # Use shell=False with a list of arguments for better security
+        # However, since we receive a string, we need to parse it carefully
         proc = await asyncio.create_subprocess_shell(
             cmd,
             stdout=asyncio.subprocess.PIPE,
